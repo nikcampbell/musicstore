@@ -9,6 +9,7 @@ export class AlbumService {
 
   constructor(private http: Http) { }
 
+  // REBEL-999 Custom Change Comment
   // this is the endpoint of our REST API service in Go
 //  private albumsUrl = 'http://localhost:9000/';
   private albumsUrl = 'http://192.168.99.100:32495';
