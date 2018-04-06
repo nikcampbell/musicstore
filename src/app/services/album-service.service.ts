@@ -21,14 +21,17 @@ export class AlbumService {
     // ...and calling .json() on the response to return data
       .map((res: Response) => res.json())
       // ...errors if any
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   // Add a new album
   addAlbum (body: Object): Observable<Object> {
-    let bodyString = JSON.stringify(body); // Stringify payload
-    let headers      = new Headers({ 'Content-Type': 'text/plain' }); // ... Set content type as text in order not to trigger preflight OPTIONS request
-    let options       = new RequestOptions({ headers: headers }); // Create a request option
+    const bodyString = JSON.stringify(body); // Stringify payload
+
+    // ... Set content type as text in order not to trigger preflight OPTIONS request
+    const headers      = new Headers({ 'Content-Type': 'text/plain' });
+
+    const options       = new RequestOptions({ headers: headers }); // Create a request option
     return this.http.post(this.albumsUrl, body, options) // ...using post request
       .map((res: Response) => res) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error || 'Server error')); // ...errors if any
